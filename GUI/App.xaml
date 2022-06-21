@@ -1,0 +1,12 @@
+﻿<Application x:Class="GUI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:GUI"
+             xmlns:vm="clr-namespace:GUI.ViewModel"
+             xmlns:converter="clr-namespace:GUI.Converter"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <vm:VMLocator x:Key="VMLocator" />
+        <converter:BooleanConverter x:Key="BooleanConverter" />
+    </Application.Resources>
+</Application>

@@ -1,0 +1,33 @@
+﻿<Window x:Class="GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="DataCleaner" 
+        Height="450" 
+        Width="800"
+        DataContext="{Binding Source={StaticResource VMLocator}, Path=MainViewModelInstance}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+
+        <DataGrid Grid.Column="0" ItemsSource="{Binding ListOfReplacements}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Search for" Binding="{Binding Path=OriginalValue}" />
+                <DataGridTextColumn Width="*" Header="Replace with" Binding="{Binding Path=ReplacementValue}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Column="1">
+            <Button Content="Select files" FontSize="18" Margin="5" Command="{Binding OpenFilesCommand}" />
+            <Button Content="Replace!" FontSize="18" Margin="5" Command="{Binding ReplaceValuesCommand}" />
+            <CheckBox Content="Overwrite original files" Margin="5" Name="OverWriteCB" />
+            <TextBox Text=".updated.xml" Margin="5" IsEnabled="{Binding ElementName=OverWriteCB, Path=IsChecked, Converter={StaticResource BooleanConverter}}" />
+            <TextBlock Text="{Binding Path=SelectedFileCount, StringFormat={}{0} file(s) selected}" Margin="5" />
+        </StackPanel>
+       
+    </Grid>
+</Window>
